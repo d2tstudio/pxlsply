@@ -4,16 +4,62 @@ head
   script(src='https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js')
   link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
 
+  // Add to homescreen for Chrome on Android
+  meta(name='mobile-web-app-capable', content='yes')
+  link(rel='icon', sizes='192x192', href='images/touch/chrome-touch-icon-192x192.png')
+  // Add to homescreen for Safari on iOS
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style', content='black')
+  meta(name='apple-mobile-web-app-title', content='Material Design Lite')
+  link(rel='apple-touch-icon-precomposed', href='apple-touch-icon-precomposed.png')
+  // Tile icon for Win8 (144x144 + tile color)
+  meta(name='msapplication-TileImage', content='images/touch/ms-touch-icon-144x144-precomposed.png')
+  meta(name='msapplication-TileColor', content='#3372DF')
+
+
 
 body
-  +hello
-  +feed
+  +header
 
-template(name="hello")
-  h1 Jello
-
-
-template(name="feed")
+template(name="feedBasic")
   ul.feed
     each product
       li {{item}} - {{cost}}
+
+
+template(name="feed")
+  .feed.mdl-grid
+  each product
+    .mdl-cell.mdl-cell--4-col
+      .mdl-card.mdl-shadow--2dp.demo-card-wide
+        .mdl-card__title(style="background-image:url('{{thumbnail}}')")
+          h2.mdl-card__title-text {{item}}
+        .mdl-card__supporting-text
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          | Mauris sagittis pellentesque lacus eleifend lacinia...
+        .mdl-card__actions.mdl-card--border
+          a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect
+            a(href="#{url}?ref=d2tstudio") $ #{cost}
+        .mdl-card__menu
+          button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
+            i.material-icons share
+
+
+template(name="header")
+  .layout-transparent.mdl-layout.mdl-js-layout
+    header.mdl-layout__header.mdl-layout__header--transparent
+      .mdl-layout__header-row
+        // Title
+        span.mdl-layout-title pxlsply
+        // Add spacer, to align navigation to the right
+        .mdl-layout-spacer
+        // Navigation
+        nav.mdl-navigation
+          a.mdl-navigation__link(href='') About
+    .mdl-layout__drawer
+      span.mdl-layout-title pxlsply
+      nav.mdl-navigation
+        a.mdl-navigation__link(href='') By Derry Birkett
+        a.mdl-navigation__link(href='') Website
+    main.mdl-layout__content
+      +feed
