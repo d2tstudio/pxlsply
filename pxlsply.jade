@@ -1,0 +1,19 @@
+head
+  title pxlsply
+  link(rel='stylesheet', href='https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css')
+  script(src='https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+
+body
+  +hello
+  +feed
+
+template(name="hello")
+  h1 Jello
+
+
+template(name="feed")
+  ul.feed
+    each item
+      li {{title}}
