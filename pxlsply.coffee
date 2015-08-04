@@ -16,8 +16,8 @@ if Meteor.isClient
           console.log(error)
         else
           console.log(results)
-          Feed.insert item for item in results.data
+          Feed.insert item for item in results.data["new-files"]
 
   Template.feed.helpers
-    item:
+    product:
       Feed.find()
